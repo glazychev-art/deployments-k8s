@@ -5,13 +5,21 @@
 Prepare cert and key for the spire:
 
 ```bash
+kubectl create ns spire
+```
+
+```bash
 openssl req -x509 -newkey rsa:4096 -keyout "bootstrap.key" -out "bootstrap.crt" -days 365 -nodes -subj '/CN=localhost' 2>/dev/null
+```
+
+```bash
+kubectl create secret generic spire-secret --from-file=bootstrap.crt --from-file=bootstrap.key -n spire
 ```
 
 
 To apply spire deployments following the next command:
 ```bash
-kubectl apply -k .
+kubectl apply -k https://github.com/glazychev-art/deployments-k8s/examples/spire?ref=kust_test
 ```
 
 Wait for PODs status ready:

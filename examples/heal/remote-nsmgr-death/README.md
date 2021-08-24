@@ -13,7 +13,7 @@ Make sure that you have completed steps from [basic](../../basic) or [memory](..
 
 Create test namespace:
 ```bash
-NAMESPACE=($(kubectl create -f ../namespace.yaml)[0])
+NAMESPACE=($(kubectl create -f https://raw.githubusercontent.com/networkservicemesh/deployments-k8s/main/examples/heal/namespace.yaml)[0])
 NAMESPACE=${NAMESPACE:10}
 ```
 
@@ -42,8 +42,8 @@ kind: Kustomization
 namespace: ${NAMESPACE}
 
 bases:
-- ../../../apps/nsc-kernel
-- ../../../apps/nse-kernel
+- github.com/networkservicemesh/deployments-k8s/apps/nsc-kernel
+- github.com/networkservicemesh/deployments-k8s/apps/nse-kernel
 
 patchesStrategicMerge:
 - patch-nsc.yaml
@@ -138,7 +138,7 @@ kind: Kustomization
 namespace: nsm-system
 
 bases:
-- ../../../apps/nsmgr
+- github.com/networkservicemesh/deployments-k8s/apps/nsmgr
 
 patchesStrategicMerge:
 - patch-nsmgr.yaml
@@ -182,7 +182,7 @@ kind: Kustomization
 namespace: ${NAMESPACE}
 
 bases:
-- ../../../apps/nse-kernel
+- github.com/networkservicemesh/deployments-k8s/apps/nse-kernel
 
 patchesStrategicMerge:
 - patch-nse.yaml
@@ -239,7 +239,7 @@ kubectl exec ${NEW_NSE} -n ${NAMESPACE} -- ping -c 4 172.16.1.103
 
 Restore NSMgr setup:
 ```bash
-kubectl apply -k ../../../apps/nsmgr -n nsm-system
+kubectl apply -k github.com/networkservicemesh/deployments-k8s/apps/nsmgr -n nsm-system
 ```
 
 Delete ns:

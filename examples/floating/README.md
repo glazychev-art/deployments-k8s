@@ -62,7 +62,7 @@ kubectl exec -n spire spire-server-0 -- \
 Apply NSM resources for basic tests:
 
 ```bash
-kubectl apply -k .
+kubectl apply -k https://github.com/networkservicemesh/deployments-k8s/examples/floating
 ```
 
 **1.1. Add externalIP for services**
@@ -192,7 +192,7 @@ kubectl exec -n spire spire-server-0 -- \
 Apply NSM resources for basic tests:
 
 ```bash
-kubectl apply -k .
+kubectl apply -k https://github.com/networkservicemesh/deployments-k8s/examples/floating
 ```
 
 **2.1. Add externalIP for services**
@@ -309,7 +309,7 @@ kubectl exec -n spire spire-server-0 -- \
 Apply NSM resources for basic tests:
 
 ```bash
-kubectl apply -k ./floating-registry
+kubectl apply -k kubectl apply -k https://github.com/networkservicemesh/deployments-k8s/examples/floating/floating-registry
 ```
 
 **3.1. Add externalIP for service**

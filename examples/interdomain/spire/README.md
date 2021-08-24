@@ -19,10 +19,19 @@ Check `KUBECONFIG2` env:
 
 2. Setup spire
 
-Generate cert and key:
-
+Create spire namespace:
 ```bash
-openssl req -x509 -newkey rsa:4096 -keyout "../../spire/bootstrap.key" -out "../../spire/bootstrap.crt" -days 365 -nodes -subj '/CN=localhost' 2>/dev/null
+kubectl create ns spire
+```
+
+Generate cert and key:
+```bash
+openssl req -x509 -newkey rsa:4096 -keyout "bootstrap.key" -out "bootstrap.crt" -days 365 -nodes -subj '/CN=localhost' 2>/dev/null
+```
+
+Create secret:
+```bash
+kubectl create secret generic spire-secret --from-file=bootstrap.crt --from-file=bootstrap.key -n spire
 ```
 
 **Apply spire resources for the first cluster:**
@@ -31,7 +40,7 @@ export KUBECONFIG=$KUBECONFIG1
 ```
 
 ```bash
-kubectl apply -k ../../spire/
+kubectl apply -k https://github.com/glazychev-art/deployments-k8s/examples/spire?ref=kust_test
 ```
 
 Wait for PODs status ready:
@@ -59,7 +68,7 @@ export KUBECONFIG=$KUBECONFIG2
 ```
 
 ```bash
-kubectl apply -k ../../spire
+kubectl apply -k https://github.com/glazychev-art/deployments-k8s/examples/spire?ref=kust_test
 ```
 
 Wait for PODs status ready:

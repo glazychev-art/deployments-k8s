@@ -20,7 +20,7 @@ thus saving cluster resources (see step 14).
 
 1. Create test namespace:
 ```bash
-NAMESPACE=($(kubectl create -f ../namespace.yaml)[0])
+NAMESPACE=($(kubectl create -f https://raw.githubusercontent.com/networkservicemesh/deployments-k8s/main/examples/features/namespace.yaml)[0])
 NAMESPACE=${NAMESPACE:10}
 ```
 
@@ -110,8 +110,8 @@ kind: Kustomization
 namespace: $NAMESPACE
 
 bases:
-- ../../../apps/nse-supplier-k8s
-- ../../../apps/nsc-kernel
+- github.com/networkservicemesh/deployments-k8s/apps/nse-supplier-k8s
+- github.com/networkservicemesh/deployments-k8s/apps/nsc-kernel
 
 patchesStrategicMerge:
 - patch-nsc.yaml
