@@ -34,8 +34,8 @@ kind: Kustomization
 namespace: ${NAMESPACE}
 
 bases:
-- github.com/networkservicemesh/deployments-k8s/apps/nsc-vfio
-- github.com/networkservicemesh/deployments-k8s/apps/nse-vfio
+- github.com/networkservicemesh/deployments-k8s/apps/nsc-vfio?ref=300a510f8acff723d230fec03eac3656aae46c1a
+- github.com/networkservicemesh/deployments-k8s/apps/nse-vfio?ref=300a510f8acff723d230fec03eac3656aae46c1a
 EOF
 ```
 

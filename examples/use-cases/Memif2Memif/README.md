@@ -42,8 +42,8 @@ kind: Kustomization
 namespace: ${NAMESPACE}
 
 bases:
-- github.com/networkservicemesh/deployments-k8s/apps/nsc-memif
-- github.com/networkservicemesh/deployments-k8s/apps/nse-memif
+- github.com/networkservicemesh/deployments-k8s/apps/nsc-memif?ref=300a510f8acff723d230fec03eac3656aae46c1a
+- github.com/networkservicemesh/deployments-k8s/apps/nse-memif?ref=300a510f8acff723d230fec03eac3656aae46c1a
 
 patchesStrategicMerge:
 - patch-nsc.yaml
