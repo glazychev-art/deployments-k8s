@@ -1,0 +1,30 @@
+---
+name: Update references
+on:
+  workflow_run:
+    types:
+      - completed
+    workflows:
+      - 'ci'
+jobs:
+  update-refs:
+    name: Update references
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v2
+      - name: Fetch main
+        run: |
+          git remote -v
+          git fetch --depth=1 origin main
+      - name: Update references
+        working-directory: ${{ github.repository }}
+        run: |
+          sed -r -i 's/(ref=.*)/ref="${{ github.sha }}"/g' `grep 'ref=' -rl *`
+          git config --global user.email "nsmbot@networkservicmesh.io"
+          git config --global user.name "NSMBot"
+          git add -- .
+          if ! [ -n "$(git diff --cached --exit-code)" ]; then
+            echo ${{ matrix.repository }} is up to date
+            exit 0;
+          fi
