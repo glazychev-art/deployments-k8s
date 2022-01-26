@@ -58,7 +58,7 @@ metadata:
 spec:
   containers:
   - name: alpine
-    image: alpine:3.15.0
+    image: artgl/alpine_iproute2:3.15
     imagePullPolicy: IfNotPresent
     stdin: true
     tty: true
@@ -117,12 +117,6 @@ NSC=$(kubectl get pods -l app=alpine -n ${NAMESPACE} --template '{{range .items}
 NSE=$(kubectl get pods -l app=nse-kernel -n ${NAMESPACE} --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}')
 ```
 
-Install `iproute2` on the client:
-```bash
-kubectl exec ${NSC} -n ${NAMESPACE} -- apk update
-kubectl exec ${NSC} -n ${NAMESPACE} -- apk add iproute2
-```
-
 Ping from NSC to NSE:
 ```bash
 kubectl exec ${NSC} -n ${NAMESPACE} -- ping -c 4 172.16.1.100
@@ -135,22 +129,49 @@ kubectl exec ${NSE} -n ${NAMESPACE} -- ping -c 4 172.16.1.101
 
 Check policy based routing:
 ```bash
-result=$(kubectl exec ${NSC} -n ${NAMESPACE} -- ip r get 172.16.3.1 from 172.16.2.201 ipproto tcp dport 6666)
-echo ${result}
-echo ${result} | grep -E -q "172.16.3.1 from 172.16.2.201 via 172.16.2.200 dev nsm-1 table 1"
+kubectl exec ${NSC} -n ${NAMESPACE} -- uname -a
 ```
 
 ```bash
-result=$(kubectl exec ${NSC} -n ${NAMESPACE} -- ip r get 172.16.4.1 ipproto udp dport 6666)
-echo ${result}
-echo ${result} | grep -E -q "172.16.4.1 dev nsm-1 table 2 src 172.16.1.101"
+kubectl exec ${NSC} -n ${NAMESPACE} -- ip r get 172.16.3.1 from 172.16.2.201 ipproto tcp dport 6666
 ```
 
 ```bash
-result=$(kubectl exec ${NSC} -n ${NAMESPACE} -- ip -6 route get 2004::5 from 2004::3 ipproto udp dport 5555)
-echo ${result}
-echo ${result} | grep -E -q "via 2004::6 dev nsm-1 table 3 src 2004::3"
+kubectl exec ${NSC} -n ${NAMESPACE} -- ip r get 172.16.4.1 ipproto udp dport 6666
 ```
+
+```bash
+kubectl exec ${NSC} -n ${NAMESPACE} -- ip -6 route get 2004::5 from 2004::3 ipproto udp dport 5555
+```
+
+```bash
+kubectl exec ${NSC} -n ${NAMESPACE} -- ip a
+```
+
+```bash
+kubectl exec ${NSC} -n ${NAMESPACE} -- ip rule
+```
+
+```bash
+kubectl exec ${NSC} -n ${NAMESPACE} -- ip -6 rule
+```
+
+```bash
+kubectl exec ${NSC} -n ${NAMESPACE} -- ip route show table all | grep -Po 'table \K[^\s]+' | sort -u
+```
+
+```bash
+kubectl exec ${NSC} -n ${NAMESPACE} -- ip route show table 1
+```
+
+```bash
+kubectl exec ${NSC} -n ${NAMESPACE} -- ip route show table 2
+```
+
+```bash
+kubectl exec ${NSC} -n ${NAMESPACE} -- ip -6 route show table 3
+```
+
 
 ## Cleanup
 
