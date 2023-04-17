@@ -10,7 +10,7 @@ Forwarders are using the `wireguard` mechanism to connect with each other.
 
 Deploy NSC and NSE:
 ```bash
-kubectl apply -k https://github.com/networkservicemesh/deployments-k8s/examples/features/ipv6/Kernel2IP2Memif_ipv6?ref=ce50746ddcac231b39c549da2dd66e19d362d5a1
+kubectl apply -k ../../../../examples/features/ipv6/Kernel2IP2Memif_ipv6
 ```
 
 Wait for applications ready:
