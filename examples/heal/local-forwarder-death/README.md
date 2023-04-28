@@ -12,7 +12,7 @@ Make sure that you have completed steps from [basic](../../basic) or [memory](..
 
 Deploy NSC and NSE:
 ```bash
-kubectl apply -k https://github.com/networkservicemesh/deployments-k8s/examples/heal/local-forwarder-death?ref=f71cf8ab40439fc2a9c624eb8199747c9280a648
+kubectl apply -k ../../../examples/heal/local-forwarder-death
 ```
 
 Wait for applications ready:
