@@ -1,0 +1,13 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: admission-webhook-k8s
+spec:
+  template:
+    spec:
+      containers:
+      - name: admission-webhook-k8s
+        env:
+        - name: NSM_ENVS
+          value: NSM_LOG_LEVEL=TRACE,NSM_LIVENESSCHECKENABLED=false,NSM_MAX_TOKEN_LIFETIME=2m,NSM_REQUEST_TIMEOUT=5s
