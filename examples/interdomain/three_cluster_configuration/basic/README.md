@@ -16,17 +16,17 @@ In this example, NSM-system is deployed on three clusters. The third cluster is 
 
 Apply NSM resources for cluster1:
 ```bash
-kubectl --kubeconfig=$KUBECONFIG1 apply -k https://github.com/networkservicemesh/deployments-k8s/examples/interdomain/three_cluster_configuration/basic/cluster1?ref=adac3786a049f93abaa6f395dedda89469f5c09c
+kubectl --kubeconfig=$KUBECONFIG1 apply -k ../../../../examples/interdomain/three_cluster_configuration/basic/cluster1
 ```
 
 Apply NSM resources for cluster2:
 ```bash
-kubectl --kubeconfig=$KUBECONFIG2 apply -k https://github.com/networkservicemesh/deployments-k8s/examples/interdomain/three_cluster_configuration/basic/cluster2?ref=adac3786a049f93abaa6f395dedda89469f5c09c
+kubectl --kubeconfig=$KUBECONFIG2 apply -k ../../../../examples/interdomain/three_cluster_configuration/basic/cluster2
 ```
 
 Apply NSM resources for cluster3:
 ```bash
-kubectl --kubeconfig=$KUBECONFIG3 apply -k https://github.com/networkservicemesh/deployments-k8s/examples/interdomain/three_cluster_configuration/basic/cluster3?ref=adac3786a049f93abaa6f395dedda89469f5c09c
+kubectl --kubeconfig=$KUBECONFIG3 apply -k ../../../../examples/interdomain/three_cluster_configuration/basic/cluster3
 ```
 
 Wait for nsmgr-proxy-service exposing:

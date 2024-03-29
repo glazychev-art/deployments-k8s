@@ -12,7 +12,7 @@ Make sure that you have completed steps from [basic](../../basic) or [memory](..
 
 Deploy NSC and NSE:
 ```bash
-kubectl apply -k https://github.com/networkservicemesh/deployments-k8s/examples/features/nse-composition?ref=adac3786a049f93abaa6f395dedda89469f5c09c
+kubectl apply -k ../../../examples/features/nse-composition
 ```
 
 Wait for applications ready:
