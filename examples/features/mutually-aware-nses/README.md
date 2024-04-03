@@ -14,7 +14,7 @@ Make sure that you have completed steps from [basic](../../basic) or [memory](..
 
 Deploy NSC and NSE:
 ```bash
-kubectl apply -k https://github.com/networkservicemesh/deployments-k8s/examples/features/mutually-aware-nses?ref=02ddd95b829f5e02b93c03a0e9d8846760bfedd7
+kubectl apply -k ../../../examples/features/mutually-aware-nses
 ```
 
 Wait for applications ready:

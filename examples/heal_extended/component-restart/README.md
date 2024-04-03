@@ -15,7 +15,7 @@ Make sure that you have completed steps from [basic](../../basic) setup.
 
 Deploy NSCs and NSE:
 ```bash
-kubectl apply -k https://github.com/networkservicemesh/deployments-k8s/examples/heal_extended/component-restart?ref=02ddd95b829f5e02b93c03a0e9d8846760bfedd7
+kubectl apply -k ../../../examples/heal_extended/component-restart
 ```
 
 Wait for applications ready:
@@ -29,7 +29,7 @@ Define env variables for scripts:
 # TEST_TIME - determines how long the test will take (sec)
 # DELAY - delay between restarts (sec)
 # INTERFACE_READY_WAIT - how long do we wait for the interface to be ready (sec). Equals to NSM_REQUEST_TIMEOUT * 2 (for Close and Request)
-N_RESTARTS=15
+N_RESTARTS=25
 TEST_TIME=900
 DELAY=$(($TEST_TIME/$N_RESTARTS))
 INTERFACE_READY_WAIT=10
